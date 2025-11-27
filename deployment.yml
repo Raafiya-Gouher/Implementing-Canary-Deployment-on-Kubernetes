@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-stable               # name of the deployment
+  labels:
+    app: python-web-app             # common app label
+    version: stable                 # identifies this as the "stable" version
+spec:
+  replicas: 2                       # number of stable pods
+  selector:
+    matchLabels:                    # MUST match pod template labels below
+      app: python-web-app
+      version: stable
+  template:
+    metadata:
+      labels:                       # labels applied to PODS created by this deployment
+        app: python-web-app
+        version: stable
+    spec:
+      containers:
+        - name: django-stable
+          image: raafiyagouher/python-sample-app:1.0.0   # your stable image
+          ports:
+            - containerPort: 8000   # Django app listens on 8000
+

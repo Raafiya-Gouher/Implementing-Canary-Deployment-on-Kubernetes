@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-stable-svc           # service name (used by Ingress)
+  labels:
+    app: python-web-app             # labels on the Service itself (optional but good)
+    version: stable
+spec:
+  selector:                         # this is the IMPORTANT part
+    app: python-web-app             # must match pod labels
+    version: stable                 # so this service only sends traffic to stable pods
+  ports:
+    - name: http
+      port: 80                      # service port inside cluster
+      targetPort: 8000              # forwards to containerPort on pods
+      protocol: TCP
+  type: ClusterIP                   # internal service (use with Ingress)
+

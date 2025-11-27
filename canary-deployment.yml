@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-canary               # name of the new/canary deployment
+  labels:
+    app: python-web-app             # same app label as stable
+    version: canary                 # identifies this one as CANARY
+spec:
+  replicas: 1                       # fewer pods than stable (small test)
+  selector:
+    matchLabels:                    # MUST match pod labels below
+      app: python-web-app
+      version: canary
+  template:
+    metadata:
+      labels:                       # CANARY POD labels
+        app: python-web-app
+        version: canary
+    spec:
+      containers:
+        - name: django-canary
+          image: raafiyagouher/python-sample-app:1.1.0   # your canary image
+          ports:
+            - containerPort: 8000   # Django app listens on 8000
+
