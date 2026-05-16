@@ -1,4 +1,5 @@
 # Implementing-Canary-Deployment-on-Kubernetes
+
 # Kubernetes Canary Deployment of Django App with Monitoring  
 _Minikube + NGINX Ingress + Prometheus + Grafana_  
 
@@ -24,8 +25,6 @@ Key values used:
 
 ---
 
-
-
 ## 2. Prerequisites
 
 - Windows 10 Pro (with Hyper-V capability)
@@ -38,3 +37,6 @@ Key values used:
 ```powershell
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 Reboot after this.
+
+
+canary deployment 
